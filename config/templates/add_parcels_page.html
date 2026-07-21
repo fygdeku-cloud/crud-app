@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block title %}ADD | COLIS{% endblock title %}
+{%block content %}
+<h2>Ajouter un colis</h2>
+<form method="post">
+  {% csrf_token %} 
+  {{ form }}
+  <button type="submit">Save colis</button>
+</form>
+<a href="/">BACK</a>
+{% endblock content %}
