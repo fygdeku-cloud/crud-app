@@ -3,7 +3,7 @@
 <h3>Colis Liste</h3>
 <ul>
   {% for c in colis  %}
-    <li> {{ c }} </li>
+    <li> {{ c }} <a href="/parcels/delete/{{ c.id}}/">del</a></li>
   {% endfor %}
 </ul>
 <a href="/">back</a>

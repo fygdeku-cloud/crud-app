@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block title %}TRACK PACK{% endblock title %} 
+{% block content %}
+<h3>Colis Suivis</h3>
+<form method="post">
+  {% csrf_token %}
+  <input
+    type="text"
+    name="tracking_number"
+    id="tracking_number"
+    placeholder="numero de suivie"
+  />
+  <button type="submit">Suivre colis</button>
+</form>
+{% if parcel %}
+<h2>Resultat</h2>
+<p>Numero de suivi :{{parcel.tracking_number}}</p>
+<p>Statut :{{parcel.status}}</p>
+<p>Name :{{parcel.name}}</p>
+<p>Activity :{{parcel.activity}}</p>
+{% elif error %}
+<p>Erreur: {{ error}}</p>
+{% endif %}
+<a href="/">back</a>
+{% endblock %}

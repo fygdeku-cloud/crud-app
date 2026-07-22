@@ -1,11 +1,9 @@
-{% extends "base.html" %} {% block title %}WELCOME{% endblock title %}
+{% extends "base.html" %} {% block title %}LOGIN{% endblock title %}
 {% block content %}
-<h2>Pack app</h2>
-{% if nb_colis == 0 %}
- <p>Il y a aucun colis ...</p>
-{% else %}
-  <p>Il ya actuellement {{ nb_colis }}</p>
-    <a href="/parcels">VIEW COLIS</a>
-{% endif %}
-<a href="/register">ADD COLIS</a>
+<h2>Log In</h2>
+<form method='post'>
+    {% csrf_token %}
+    {{form}}
+    <input type='submit' value='Sign In'>
+</form>
 {% endblock content %}

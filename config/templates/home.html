@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block title %}WELCOME{% endblock title %}
+{% block content %}
+
+<h2>Pack app</h2>
+<h3>Hello, {{ name }}</h3>
+{% if nb_colis == 0 %}
+ <p>Il y a aucun colis ...</p>
+{% else %}
+  <p>Il ya actuellement {{ nb_colis }}</p>
+    <a href="/parcels">VIEW COLIS</a>
+{% endif %}
+<a href="/register">ADD COLIS</a>
+<a href="/tracking">tracking COLIS</a>
+{% endblock content %}
