@@ -1,10 +1,21 @@
-{% extends "base.html" %} {% block title %}VIEW PACK{% endblock title %} 
+{% extends "base.html" %} 
+{% block title %}VIEW PACK{% endblock title %} 
 {% block content %}
-<h3>Colis Liste</h3>
-<ul>
-  {% for c in colis  %}
-    <li> {{ c }} <a href="/parcels/delete/{{ c.id}}/">del</a></li>
-  {% endfor %}
-</ul>
-<a href="/">back</a>
+
+  <h3 class="text-2xl/7 font-bold text-white text-center sm:truncate sm:text-3xl sm:tracking-tight">Liste Des Colis</h3>
+
+  <div class="flex flex-col justify-center px-6 py-12 text-center lg:px-8 bg-gray-800 py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6">
+
+    <a href="/" class="flex flex-end w-fit rounded-md bg-green-400/10 px-2 py-1 text-xs font-medium text-green-400 inset-ring inset-ring-green-500/20">back</a>
+
+    <ul>
+      {% for c in colis  %}
+        <li class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white"> 
+          {{ c }} 
+          <a href="/parcels/delete/{{ c.id}}/" class="inline-flex items-center rounded-md bg-red-400/10 px-2 py-1 text-xs ml-2 font-medium text-red-400 inset-ring inset-ring-red-400/20">delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
 {% endblock %}

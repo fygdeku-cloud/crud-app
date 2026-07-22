@@ -1,14 +1,32 @@
-{% extends "base.html" %} {% block title %}WELCOME{% endblock title %}
+{% extends "base.html" %} 
+{% block title %}home{% endblock title %}
 {% block content %}
 
-<h2>Pack app</h2>
-<h3>Hello, {{ name }}</h3>
-{% if nb_colis == 0 %}
- <p>Il y a aucun colis ...</p>
-{% else %}
-  <p>Il ya actuellement {{ nb_colis }}</p>
-    <a href="/parcels">VIEW COLIS</a>
-{% endif %}
-<a href="/register">ADD COLIS</a>
-<a href="/tracking">tracking COLIS</a>
+  <h2 class="text-2xl/7 font-bold text-white text-center sm:truncate sm:text-3xl sm:tracking-tight">Pack App</h2>
+
+  <div class="flex flex-col justify-center px-6 py-12 text-center lg:px-8 bg-gray-800 py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6">
+
+    <h3 class="text-2xl/7 font-bold text-white text-center sm:truncate sm:text-3xl sm:tracking-tight">
+      Hello, {{ name }}
+    </h3>
+
+    {% if nb_colis == 0 %}
+      <p class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Il y a aucun colis ...</p>
+
+    {% else %}
+      <p class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
+        Vous avez  actuellement {{ nb_colis }} colis encours
+
+        <a href="/parcels" class="w-fit rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-400 inset-ring inset-ring-purple-400/30">Voir vos colis</a>
+      </p> 
+    {% endif %}
+
+    <div class="flex flex-row justify-center gap-5 m-3">
+
+      <a href="/register" class=" w-fit rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-400 inset-ring inset-ring-purple-400/30">Ajouter Colis</a>
+
+      <a href="/tracking" class=" w-fit rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-400 inset-ring inset-ring-purple-400/30">Suivre Un Colis</a>
+      
+    </div>
+  </div>
 {% endblock content %}

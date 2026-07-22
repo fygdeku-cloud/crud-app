@@ -1,9 +1,30 @@
-{% extends "base.html" %} {% block title %}LOGIN{% endblock title %}
+{% extends "base.html" %} 
+{% block title %}LOGIN{% endblock title %}
 {% block content %}
-<h2>Log In</h2>
-<form method='post'>
-    {% csrf_token %}
-    {{form}}
-    <input type='submit' value='Sign In'>
-</form>
+    <div class="flex flex-col justify-center px-6 py-12 lg:px-8">
+
+        <h1 class="text-2xl/7 font-bold text-white text-center sm:truncate sm:text-3xl sm:tracking-tight">Welcome on Pack App</h1>
+
+        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Log In</h2>
+
+        <form method='post' class="my-form space-y-6 block text-sm/6 gap-7 font-medium text-gray-100 mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            {% csrf_token %}
+
+           <div class="flex flex-col justify-center gap-6 w-full  rounded-md bg-white/5 px-5 py-2.5  font-bold bg-none">
+                {{form}}
+            </div>
+
+            <button type='submit' class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Sign In</button>
+        </form>
+    </div>
+
+    <style>
+        .my-form input{
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 6px 12px;
+            margin: 4px;
+            border-radius: 12px;
+        }
+    </style>
 {% endblock content %}

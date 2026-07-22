@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}FYG | APP{% endblock title %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <h1>WELCOME ON MY APP</h1>
+  <body class="flex flex-col justify-center overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32 text-white">
+    
     {% block content %} {% endblock %}
   </body>
 </html>
