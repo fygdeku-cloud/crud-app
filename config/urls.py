@@ -20,7 +20,7 @@ from crud.views import home_page,parcels_page,add_parcel_page,tracking_page,logi
 
 urlpatterns = [
     path('',login_page),
-    path('home/',home_page),
+    path('home/',home_page,name='home'),
     path('parcels/',parcels_page),
     path('parcels/delete/<int:parcel_id>/',delete_parcel_page),
     path('tracking/',tracking_page),
