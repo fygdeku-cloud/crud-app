@@ -16,11 +16,18 @@
     </form>
 
     {% if parcel %}
-      <h2>Resultat</h2>
-      <p>Numero de suivi :{{parcel.tracking_number}}</p>
-      <p>Statut :{{parcel.status}}</p>
-      <p>Name :{{parcel.name}}</p>
-      <p>Activity :{{parcel.activity}}</p>
+      <h4 class="mt-10 text-2xl/7 font-bold text-white text-center sm:truncate sm:text-3xl sm:tracking-tight">Resultat</h2>
+
+      <p class="text-center text-2xl/9 font-bold tracking-tight text-white">Numero de suivi :{{parcel.tracking_number}}</p>
+
+      <p class="text-center text-2xl/9 font-bold tracking-tight text-white">Status :{{parcel.status}}</p>
+
+      <p class="text-center text-2xl/9 font-bold tracking-tight text-white">Title :{{parcel.title}}</p>
+
+      <p class="text-center text-2xl/9 font-bold tracking-tight text-white">Description :{{parcel.description}}</p>
+
+      <p class="text-center text-2xl/9 font-bold tracking-tight text-white">Date :{{parcel.date}}</p>
+
     {% elif error %}
       <p>Erreur: {{ error}}</p>
     {% endif %}

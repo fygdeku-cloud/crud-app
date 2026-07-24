@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from .form import RegisterParcelForm,LoginForm
 from .models import Parcels,User
-
+from django.utils.translation import gettext as _
 
 def login_page(request):
     nb_colis=len(Parcels.objects.all())
@@ -14,12 +14,15 @@ def login_page(request):
     else:
        form=LoginForm()
     return render(request,'index.html', context={'form':form,'nb_colis':nb_colis })
+    
+
 
 def home_page(request):
     nb_colis=len(Parcels.objects.all())
     return render(request,'home.html' ,context={'nb_colis':nb_colis})
 
 def parcels_page(request):
+    message = _("Votre commande a été validée.")
     return render(request, "parcels.html" ,context={'colis':Parcels.objects.all()})
 
 
