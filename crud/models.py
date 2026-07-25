@@ -1,6 +1,6 @@
 from django.utils import timezone
 import random
-
+from django.contrib.auth.models import User
 from django.db import models
 
 class Parcels(models.Model):
@@ -28,4 +28,10 @@ class User(models.Model):
     def __str__(self):
         return f"M. {self.name} "       
     
-    
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    bio = models.TextField(blank=True, null=True)
+    telephone = models.CharField(max_length=20, blank=True, null=True)
+
+    def __str__(self):
+        return f"Profil de {self.user.name}" 

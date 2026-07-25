@@ -24,7 +24,8 @@ def login_page(request):
 
 def home_page(request):
     nb_colis=Parcels.objects.count()
-    return render(request,'home.html' ,context={'nb_colis':nb_colis})
+    user_name = request.session.get('user_name', '')
+    return render(request, 'home.html', context={'nb_colis': nb_colis, 'name': user_name})
 
 def parcels_page(request):
     message = _("Votre commande a été validée.")
