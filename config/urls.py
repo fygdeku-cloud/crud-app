@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from crud.views import home_page,parcels_page,add_parcel_page,tracking_page,login_page,delete_parcel_page
 
 urlpatterns = [
@@ -26,6 +26,9 @@ urlpatterns = [
     path('tracking/',tracking_page),
     path('register/',add_parcel_page),
     path('admin/', admin.site.urls),
+    
+    path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
 ]
 
 handler404 = 'crud.views.erreur_404'
