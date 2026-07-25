@@ -27,3 +27,6 @@ urlpatterns = [
     path('register/',add_parcel_page),
     path('admin/', admin.site.urls),
 ]
+
+handler404 = 'crud.views.erreur_404'
+handler500 = 'crud.views.erreur_500'

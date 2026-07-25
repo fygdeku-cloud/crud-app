@@ -58,3 +58,11 @@ def delete_parcel_page(request,parcel_id):
     parcel=get_object_or_404(Parcels, id=parcel_id)
     parcel.delete()
     return redirect('/parcels/')
+
+def erreur_404(request, exception):
+    # La vue 404 accepte l'argument 'exception'
+    return render(request, '404.html', status=404)
+
+def erreur_500(request):
+    # La vue 500 n'a pas besoin de l'argument 'exception'
+    return render(request, '500.html', status=500)

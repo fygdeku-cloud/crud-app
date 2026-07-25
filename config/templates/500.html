@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Erreur serveur - 500</title>
+    <!-- Intégration Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-slate-900 text-white flex items-center justify-center min-h-screen p-4"
+  >
+    <div class="text-center max-w-md">
+      <!-- Code 500 en rouge pour signaler l'erreur technique -->
+      <h1 class="text-9xl font-extrabold text-rose-500 tracking-widest">500</h1>
+      <div
+        class="bg-rose-500 text-white px-3 py-1 text-sm rounded -rotate-6 inline-block font-bold mb-6 shadow-lg"
+      >
+        Erreur Interne du Serveur
+      </div>
+      <p class="text-slate-300 text-lg mb-2">
+        Oups ! Un problème inattendu est survenu de notre côté.
+      </p>
+      <p class="text-slate-400 text-sm mb-8">
+        Nos équipes techniques ont été notifiées et travaillent à résoudre le
+        souci. Essayez de rafraîchir la page ou revenez dans quelques instants.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <button
+          onclick="window.location.reload()"
+          class="bg-rose-600 hover:bg-rose-500 text-white font-semibold px-5 py-2.5 rounded-lg shadow-md transition duration-200"
+        >
+          🔄 Recharger la page
+        </button>
+        <a
+          href="/"
+          class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-5 py-2.5 rounded-lg border border-slate-700 transition duration-200"
+        >
+          Retour à l'accueil
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
