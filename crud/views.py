@@ -2,23 +2,28 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from .form import RegisterParcelForm,LoginForm
 from .models import Parcels,User
+from django.core.mail import send_mail
 from django.utils.translation import gettext as _
+from .tasks import envoyer_email_bienvenue
+
 
 def login_page(request):
-    nb_colis=len(Parcels.objects.all())
-    if request.method == 'POST':
-       form=LoginForm(request.POST)
-       if form.is_valid():
-           user=form.save()
-           return render(request,"home.html", context={'nb_colis':nb_colis,'name':user.name})
-    else:
-       form=LoginForm()
-    return render(request,'index.html', context={'form':form,'nb_colis':nb_colis })
+    nb_colis = Parcels.objects.count()  
     
-
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            request.session['user_name'] = user.name
+            email_user = user.email  
+            envoyer_email_bienvenue.delay(email_user)
+            return redirect('home_page') 
+    else:
+        form = LoginForm()
+    return render(request, 'index.html', context={'form': form, 'nb_colis': nb_colis})
 
 def home_page(request):
-    nb_colis=len(Parcels.objects.all())
+    nb_colis=Parcels.objects.count()
     return render(request,'home.html' ,context={'nb_colis':nb_colis})
 
 def parcels_page(request):
