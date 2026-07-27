@@ -31,8 +31,7 @@ LOCALE_PATHS = [
 SECRET_KEY = 'django-insecure-_z7pted^1r@cxoj(hwrqa__4)d*p9u_(pu*p-61*zjg(2lt1p5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
+DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 ADMINS = [
@@ -53,20 +52,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crud', 
-    
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
-]
+ ]
 
 SITE_ID = 1
 
-AUTHENTICATION_BACKENDS = [
-    # Permet la connexion admin Django classique + allauth
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
 
 # Redirections après connexion / déconnexion
 LOGIN_REDIRECT_URL = '/'
@@ -86,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -163,11 +157,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
-# Indique à Django où trouver le dossier static à la racine
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
