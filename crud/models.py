@@ -1,6 +1,6 @@
 from django.utils import timezone
 import random
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,AbstractUser
 from django.db import models
 
 class Parcels(models.Model):
@@ -19,7 +19,7 @@ class Parcels(models.Model):
         return f" Nom Colis: {self.title} de {self.description} "       
     
     
-class User(models.Model):
+class User(AbstractUser):
     name=models.CharField(max_length=50);
     surname=models.CharField(max_length=250);
     age=models.IntegerField(default=0) 

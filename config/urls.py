@@ -28,8 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-]
+ ]
 
 handler404 = 'crud.views.erreur_404'
 handler500 = 'crud.views.erreur_500'

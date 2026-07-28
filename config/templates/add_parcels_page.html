@@ -4,7 +4,7 @@
 
   <h3 class="text-2xl/7 font-bold text-white text-center sm:truncate sm:text-3xl sm:tracking-tight">Ajouter colis</h3>
 
-  <a href="/" class="flex flex-end w-fit rounded-md bg-green-400/10 px-2 py-1 m-5 text-xs font-medium text-green-400 inset-ring inset-ring-green-500/20">back</a>
+  <a href="{% url "home_page" %}" class="flex flex-end w-fit rounded-md bg-green-400/10 px-2 py-1 m-5 text-xs font-medium text-green-400 inset-ring inset-ring-green-500/20">back</a>
 
   <form method='post' class="my-form space-y-6 block text-sm/6 font-medium text-gray-100 mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     {% csrf_token %}

@@ -6,7 +6,7 @@
 
   <div class="block w-full rounded-md bg-white/5 px-2 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6">
 
-    <a href="/" class="flex flex-end w-fit rounded-md bg-green-400/10 px-2 py-1 m-5 text-xs font-medium text-green-400 inset-ring inset-ring-green-500/20">back</a>
+    <a href="{% url "home_page" %}" class="flex flex-end w-fit rounded-md bg-green-400/10 px-2 py-1 m-5 text-xs font-medium text-green-400 inset-ring inset-ring-green-500/20">back</a>
 
     <form method="post" class="my-form space-y-6 block text-sm/6 font-medium text-gray-100 mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       {% csrf_token %}

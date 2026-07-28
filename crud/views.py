@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
+from django.utils import timezone
 from .form import RegisterParcelForm,LoginForm
 from .models import Parcels,User
 from django.core.mail import send_mail
@@ -12,7 +13,7 @@ def login_page(request):
     
     if request.method == 'POST':
         form = LoginForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and request.user.is_authenticated :
             user = form.save()
             request.session['user_name'] = user.name
             email_user = user.email  
@@ -48,6 +49,8 @@ def add_parcel_page(request):
     if request.method == 'POST':
         form=RegisterParcelForm(request.POST)
         if form.is_valid():
+            parcel=form.save(commit=False)
+            parcel.date=timezone.now()
             form.save()
             return render(request,"parcels.html", context={'colis':Parcels.objects.all()})
     else:

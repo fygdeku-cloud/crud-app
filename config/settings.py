@@ -35,7 +35,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 ADMINS = [
-    ('Ton Nom', 'ton.email@exemple.com'),
+    ('Fyg', 'fygdev@gmail.com'),
 ]
 
 # URL de connexion Redis (par défaut en local)
@@ -51,24 +51,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crud', 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
+    'crud',
  ]
 
 SITE_ID = 1
 
-
-# Redirections après connexion / déconnexion
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-
-# Options de configuration Allauth (Optionnel mais recommandé)
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+AUTH_USER_MODEL = 'crud.User'
 
 MIDDLEWARE = [            
     'django.middleware.security.SecurityMiddleware',
@@ -79,7 +67,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -146,7 +133,7 @@ LANGUAGES = [
     ('es', _('Spanish')),
 ]
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Douala'
 
 USE_I18N = True
 
