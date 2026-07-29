@@ -26,7 +26,7 @@ urlpatterns = [
     path('tracking/',tracking_page),
     path('register/',add_parcel_page),
     path('admin/', admin.site.urls),
-    
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
  ]
 

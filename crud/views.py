@@ -14,6 +14,7 @@ def login_page(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid() and request.user.is_authenticated :
+            
             user = form.save()
             request.session['user_name'] = user.name
             email_user = user.email  
@@ -21,16 +22,17 @@ def login_page(request):
             return redirect('home_page') 
     else:
         form = LoginForm()
-    return render(request, 'index.html', context={'form': form, 'nb_colis': nb_colis})
+    return render(request, 'index.html', {'form': form, 'nb_colis': nb_colis})
 
 def home_page(request):
     nb_colis=Parcels.objects.count()
+    msg="🟢"
     user_name = request.session.get('user_name', '')
-    return render(request, 'home.html', context={'nb_colis': nb_colis, 'name': user_name})
+    return render(request, 'home.html', {'nb_colis': nb_colis, 'name': user_name, 'msg':msg})
 
 def parcels_page(request):
     message = _("Votre commande a été validée.")
-    return render(request, "parcels.html" ,context={'colis':Parcels.objects.all()})
+    return render(request, "parcels.html" ,{'colis':Parcels.objects.all(), 'nb_colis':Parcels.objects.count()})
 
 
 def tracking_page(request):
@@ -42,7 +44,7 @@ def tracking_page(request):
            parcel=Parcels.objects.get(tracking_number=tracking_number)
        except Parcels.DoesNotExist:
            error="Aucun colis n'existe avec ce suivi"
-    return render(request,"tracking.html",context={'parcel':parcel, 'error':error})       
+    return render(request,"tracking.html", {'parcel':parcel, 'error':error})       
 
 
 def add_parcel_page(request):
@@ -52,10 +54,10 @@ def add_parcel_page(request):
             parcel=form.save(commit=False)
             parcel.date=timezone.now()
             form.save()
-            return render(request,"parcels.html", context={'colis':Parcels.objects.all()})
+            return render(request,"parcels.html", {'colis':Parcels.objects.all()})
     else:
         form=RegisterParcelForm()
-        return render(request,"add_parcels_page.html", context={'form':form})
+        return render(request,"add_parcels_page.html",{'form':form})
     
 def delete_parcel_page(request,parcel_id):
     parcel=get_object_or_404(Parcels, id=parcel_id)
