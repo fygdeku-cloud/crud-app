@@ -11,6 +11,6 @@ class RegisterParcelForm(forms.ModelForm):
       
       
 class LoginForm(forms.ModelForm):
-       class Meta:
-          model=User
-          fields=['name','surname','email'] 
+      class Meta:
+         model=User
+         fields=['name','surname','email','password'] 

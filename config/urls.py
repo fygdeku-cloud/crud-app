@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from crud.views import home_page,parcels_page,add_parcel_page,tracking_page,login_page,delete_parcel_page
+from crud.views import home_page,parcels_page,add_parcel_page, signup_page,tracking_page,login_page,delete_parcel_page, verify_page
 
 urlpatterns = [
     path('',login_page),
+    path('signup/',signup_page, name='signup_page'),
+    path('verify/',verify_page, name='verify_page'),
     path('home/',home_page,name='home_page'),
     path('parcels/',parcels_page),
     path('parcels/delete/<int:parcel_id>/',delete_parcel_page),

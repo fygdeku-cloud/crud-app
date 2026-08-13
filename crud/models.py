@@ -20,13 +20,20 @@ class Parcels(models.Model):
     
     
 class User(AbstractUser):
-    name=models.CharField(max_length=50);
+    tracking_number_user=models.CharField(max_length=15,unique=True,null=True,blank=True)
+    name=models.CharField(max_length=500);
     surname=models.CharField(max_length=250);
-    age=models.IntegerField(default=0) 
+    age=models.IntegerField(default=0)
+    password=models.CharField(max_length=100)
     email=models.EmailField(unique=True) 
     
     def __str__(self):
-        return f"M. {self.name} "       
+        return f"M. {self.name} "  
+    
+    def save(self,*args,**kwargs):
+        if not self.tracking_number_user:
+          self.tracking_number_user='FR' + str(random.randint(100, 999))
+        super().save(*args, **kwargs)     
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')

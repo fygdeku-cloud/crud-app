@@ -1,0 +1,28 @@
+{% extends "base.html" %} 
+{% block title %}Verify_user{% endblock title %} 
+{% block content %}
+
+  <h3 class="text-2xl/7 font-bold text-white text-center sm:truncate sm:text-3xl sm:tracking-tight">{{message}}</h3>
+
+  <div class="block w-full rounded-md bg-white/5 px-2 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6">
+
+    <form method="post" class="my-form space-y-6 block text-sm/6 font-medium text-gray-100 mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      {% csrf_token %}
+      <input type="text" name="tracking_number_user" id="tracking_number_user" placeholder="entrez le code de suivie"/>
+     
+      <button type='submit' class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Valider</button>
+    </form>
+    <style>
+     .my-form input{
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        padding: 6px 12px;
+        margin: 2px;
+        border-radius: 12px;
+        width: 100%;
+      }
+    </style>
+  </div>
+{% endblock %}
+
+

@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from django.utils import timezone
+
 from .form import RegisterParcelForm,LoginForm
 from .models import Parcels,User
-from django.core.mail import send_mail
+from django.core.mail import message, send_mail
 from django.utils.translation import gettext as _
 from .tasks import envoyer_email_bienvenue
 
@@ -13,8 +14,33 @@ def login_page(request):
     
     if request.method == 'POST':
         form = LoginForm(request.POST)
-        if form.is_valid() and request.user.is_authenticated :
+
+        if form.is_valid():
+            user = form.save()
+            request.session['user_name'] = user.name
+            email_user = user.email  
+            envoyer_email_bienvenue.delay(email_user)
+            return redirect('verify_page') 
+    else:
+        form = LoginForm()
+    return render(request, 'index.html', {'form': form, 'nb_colis': nb_colis})
+
+def signup_page(request):
+    nb_colis = Parcels.objects.count()  
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        username=request.POST['name']
+        password=request.POST['password']
+        email=request.POST['email']
+        user = authenticate(request, username=username, password=password, email=email)
+    
+        if user is not None:
+            login(request, user)
+            return redirect('home_page')
+        else:
+            message.error(request, "Nom d'utilisateur ou mot de passe incorrect...")
             
+        if form.is_valid():
             user = form.save()
             request.session['user_name'] = user.name
             email_user = user.email  
@@ -22,7 +48,21 @@ def login_page(request):
             return redirect('home_page') 
     else:
         form = LoginForm()
-    return render(request, 'index.html', {'form': form, 'nb_colis': nb_colis})
+    return render(request, 'signup.html', {'form': form, 'nb_colis': nb_colis})
+
+
+def verify_page(request):
+    message = "Nous venons de vous envoyer un code de verification."
+    if request.method == 'POST':
+       request.session['user_name'] = user.name
+       tracking_number_user=request.POST.get('tracking_number_user')
+       if User.tracking_number_user == tracking_number_user:
+           user = User.objects.get(tracking_number_user=tracking_number_user)
+           return redirect('home_page')
+       else:
+           return redirect('index_page')
+    return render(request, 'verify.html', {'message': message})
+
 
 def home_page(request):
     nb_colis=Parcels.objects.count()

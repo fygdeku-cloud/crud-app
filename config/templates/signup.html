@@ -1,11 +1,12 @@
 {% extends "base.html" %} 
-{% block title %}Create Account{% endblock title %}
+
+{% block title %}LOGIN{% endblock title %}
 {% block content %}
     <div class="flex flex-col justify-center lg:px-8">
 
         <h1 class="text-2xl/7 font-bold text-white text-center sm:truncate sm:text-3xl sm:tracking-tight">Welcome on Pack App</h1>
 
-        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Create Account</h2>
+        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Log In</h2>
 
         <form method='post' class="my-form space-y-6 block text-sm/6 gap-7 font-medium text-gray-100 mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             {% csrf_token %}
@@ -14,8 +15,7 @@
                 {{form.as_p}}
             </div>
 
-            <button type='submit' class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Create Account</button>
-            <p class="text-center text-sm/6 text-gray-400">Already have an account? <a href="{% url "signup_page" %}" class="font-semibold text-indigo-400 hover:text-indigo-300">Log In</a></p>
+            <button type='submit' class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Log In</button>
         </form>
     </div>
 

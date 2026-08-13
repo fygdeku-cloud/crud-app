@@ -58,6 +58,7 @@ SITE_ID = 1
 
 AUTH_USER_MODEL = 'crud.User'
 
+
 MIDDLEWARE = [            
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
