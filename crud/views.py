@@ -3,10 +3,11 @@ from django.http import HttpResponse
 from django.utils import timezone
 
 from .form import RegisterParcelForm,LoginForm
-from .models import Parcels,User
+from .models import Parcels,Client
 from django.core.mail import message, send_mail
 from django.utils.translation import gettext as _
 from .tasks import envoyer_email_bienvenue
+from crud import form
 
 
 def login_page(request):
@@ -54,13 +55,14 @@ def signup_page(request):
 def verify_page(request):
     message = "Nous venons de vous envoyer un code de verification."
     if request.method == 'POST':
+       user = form.save()
        request.session['user_name'] = user.name
        tracking_number_user=request.POST.get('tracking_number_user')
-       if User.tracking_number_user == tracking_number_user:
-           user = User.objects.get(tracking_number_user=tracking_number_user)
+       if Client.tracking_number_user == tracking_number_user:
+           user = Client.objects.get(tracking_number_user=tracking_number_user)
            return redirect('home_page')
        else:
-           return redirect('index_page')
+           return redirect('login_page')
     return render(request, 'verify.html', {'message': message})
 
 

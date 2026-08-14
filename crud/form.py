@@ -1,5 +1,5 @@
 from django import forms
-from .models import Parcels,User
+from .models import Parcels,Client
 
 class RegisterParcelForm(forms.ModelForm):
    class Meta:
@@ -12,5 +12,5 @@ class RegisterParcelForm(forms.ModelForm):
       
 class LoginForm(forms.ModelForm):
       class Meta:
-         model=User
+         model=Client
          fields=['name','surname','email','password'] 

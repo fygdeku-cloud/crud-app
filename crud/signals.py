@@ -1,11 +1,11 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .models import User, Profile
+from .models import Client, Profile
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=Client)
 def creer_profil_utilisateur(sender, instance, created, **kwargs):
     """
-    - sender   : Le modèle qui émet le signal (ici User).
+    - sender   : Le modèle qui émet le signal (ici Client).
     - instance : L'objet précis qui vient d'être sauvegardé.
     - created  : Un booléen qui vaut True SI l'objet vient d'être créé 
                  (et False s'il s'agit d'une simple mise à jour).

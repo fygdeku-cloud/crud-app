@@ -19,7 +19,7 @@ class Parcels(models.Model):
         return f" Nom Colis: {self.title} de {self.description} "       
     
     
-class User(AbstractUser):
+class Client(models.Model):
     tracking_number_user=models.CharField(max_length=15,unique=True,null=True,blank=True)
     name=models.CharField(max_length=500);
     surname=models.CharField(max_length=250);
@@ -36,7 +36,7 @@ class User(AbstractUser):
         super().save(*args, **kwargs)     
     
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(Client, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField(blank=True, null=True)
     telephone = models.CharField(max_length=20, blank=True, null=True)
 
