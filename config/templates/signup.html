@@ -15,7 +15,8 @@
                 {{form.as_p}}
             </div>
 
-            <button type='submit' class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Log In</button>
+            <button type='submit' class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Sign In</button>
+            <p class="text-center text-sm/6 text-gray-400">Already have an account? <a href="{% url "login_page" %}" class="font-semibold text-indigo-400 hover:text-indigo-300">Log In</a></p>
         </form>
     </div>
 
