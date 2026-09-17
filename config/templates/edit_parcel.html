@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content %}
+<h1 class="text-2xl/7 font-bold text-white text-center sm:truncate sm:text-3xl sm:tracking-tight">Edit Parcel</h1>
+<form method="post" class="my-form space-y-6 block text-sm/6 font-medium text-gray-100 mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+  {% csrf_token %}
+    <label for="title">Title:</label>
+    <input type="text" class="form-control" id="title" name="title" value="{{ parcel.title }}" required />
+    <label for="description">Description:</label>
+    <textarea class="form-control" id="description" name="description" required>
+{{ parcel.description }}</textarea
+    >
+    <label for="status">Status:</label>
+    <select class="form-control" id="status" name="status" required>
+      <option value="0" {% if parcel.status == 0 %}selected{% endif %}>
+        Pending
+      </option>
+      <option value="1" {% if parcel.status == 1 %}selected{% endif %}>
+        Shipped
+      </option>
+      <option value="2" {% if parcel.status == 2 %}selected{% endif %}>
+        Delivered
+      </option>
+    </select>
+  <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save Changes</button>
+</form>
+{% endblock %}
+<style>
+  .form-group {
+    margin-bottom: 15px;
+  }
+ 
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .my-form input, textarea, select{
+          background-color: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          padding: 6px 12px;
+          width: 100%;
+          margin: 4px;
+          border-radius: 12px;
+    }
+  .my-form label{
+    display: block;
+    }
+</style>
